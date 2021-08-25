@@ -1,7 +1,7 @@
 {
-  "name": "zwt-repository",
+  "name": "zwt-fe",
   "version": "1.0.0",
-  "description": "",
+  "description": "add some frontEnd function for ZWT",
   "main": "index.js",
   "scripts": {
     "test": "eslint",

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "eslint"
+    "test": "eslint",
+    "lint": "./node_modules/.bin/eslint --ext .js,.vue ./",
+    "lint:fix": "./node_modules/.bin/eslint --fix --ext .js,.vue ./",
+    "prepare": "husky install"
   },
   "bin": {
     "zwt": "./index.js"
@@ -20,6 +23,10 @@
     "fs-extra": "^7.0.1"
   },
   "devDependencies": {
-    "eslint": "^7.32.0"
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-vue": "^7.16.0",
+    "husky": "^7.0.0"
   }
 }

@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
 // 引入相关依赖
-const { prompt } = require('inquirer')
-const program = require('commander')
-const utils = require('./utils')
+const { prompt } = require('inquirer');
+const program = require('commander');
+const utils = require('./utils');
 
-const log = utils.log
+const log = utils.log;
 
-log('start: ~~~')
-program.usage('<command>')
-program.version(require('./package.json').version)
+log('start: ~~~');
+program.usage('<command>');
+program.version(require('./package.json').version);
 
 // 开发环境，显示dev log
 program
@@ -17,14 +17,14 @@ program
   .description('dev mode: show more logs')
   .alias('d')
   .action(() => {
-    utils.setEnvTrue()
-    init()
-  })
+    utils.setEnvTrue();
+    init();
+  });
 
-program.parse(process.argv)
+program.parse(process.argv);
 if (!program.args.length || process.argv[2] !== 'dev') {
-  utils.setEnvFalse()
-  init()
+  utils.setEnvFalse();
+  init();
 }
 
 
@@ -39,13 +39,13 @@ function init() {
       name: 'func',
       choices: utils.getList()
     }
-  ]
+  ];
   prompt(promptList).then(answer => {
-    const key = answer['func'].split('|')[0].trim()
-    const url = utils.getListUrl(key)
-    const funcModule = require(url)
-    funcModule.main()
+    const key = answer['func'].split('|')[0].trim();
+    const url = utils.getListUrl(key);
+    const funcModule = require(url);
+    funcModule.main();
   }).catch(error => {
-    console.log('prompt error: ', error)
-  })
+    console.log('prompt error: ', error);
+  });
 }

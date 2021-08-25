@@ -12,7 +12,13 @@
   "bin": {
     "zwt": "./index.js"
   },
-  "author": "",
+  "author": "jian2333",
+  "keywords": [
+    "cli",
+    "eslint",
+    "husky",
+    "pre-commit"
+  ],
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",

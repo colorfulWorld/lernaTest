@@ -80,8 +80,9 @@ async function installHusky() {
   log('5执行完成: 安装 huksy 并 npm install');
 
   // 2. 写入.husky/pre-commit钩子，如果有npm run lint则忽略
-  const preCommitFile = fs.readFileSync(PATH.USE_PRECOMMIT, 'utf8');
-  preCommitFile.replace('npm test', '');
+  let preCommitFile = fs.readFileSync(PATH.USE_PRECOMMIT, 'utf8');
+  preCommitFile = preCommitFile.replace(/npm test\n/g, '');
+  fs.writeFileSync(PATH.USE_PRECOMMIT, preCommitFile);
   if (!preCommitFile.includes('npm run lint')) {
     shell.exec(`echo "npm run lint" >> ${PATH.USE_PRECOMMIT}`);
   }

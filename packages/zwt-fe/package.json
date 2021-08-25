@@ -1,6 +1,6 @@
 {
   "name": "zwt-fe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "add some frontEnd function for ZWT",
   "main": "index.js",
   "scripts": {

@@ -1,8 +1,4 @@
-const fs = require('fs-extra');
-const shell = require('shelljs');
-const { resolve } = require('path');
-const ora = require('ora');
-const chalk = require('chalk');
+const { fs, shell, resolve, ora, chalk } = require('./shared-utils');
 const spinner = ora();
 
 const PATH = {
@@ -45,6 +41,20 @@ const addScript = function (key = '', value = '') {
   }
 };
 
+/*
+* 获取npm install version版本
+* */
+function getInitVersions(path) {
+  const versions = fs.readJsonSync(path);
+  let result = '';
+  Object.keys(versions).map(x => {
+    if (x !== 'version') {
+      result += `${x}@${versions[x]} `;
+    }
+  });
+  return result;
+}
+
 // NPM安装依赖
 const npmInstall = async function (command, args) {
   return new Promise((resolve) => {
@@ -82,6 +92,7 @@ module.exports = {
   getList,
   getListUrl,
   addScript,
+  getInitVersions,
   npmInstall,
   isMac,
   isWindows,

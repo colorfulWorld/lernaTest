@@ -11,3 +11,7 @@
 - `USE_XXX`: 使用脚本时所在路径，`./xxx`
 - `IN_XXX`: 开发的脚本所在的路径，`path.resolve(__dirname, './xxx')`
 
+### TODO
+
+- [ ] `windows` 平台： `eslint+husky` 配置 `~/.huksy` 中的 `PATH` 环境变量
+- [ ] `windows` + `mac` 平台：添加 `eslint-loader`，并配置 `webpack.dev.js`

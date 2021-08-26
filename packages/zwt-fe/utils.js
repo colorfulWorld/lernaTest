@@ -87,6 +87,16 @@ const log = text => {
   ENV_ZWT_DEV && console.log(text);
 };
 
+/*
+* exec不输出到控制台，一般用于windows平台
+* 只能同步执行sync
+* */
+const execSilent = (cmd, options) => {
+  !options && (options = {});
+  options['silent'] = true;
+  shell.exec(cmd, options);
+};
+
 module.exports = {
   templatesJson: data,
   getList,
@@ -98,7 +108,8 @@ module.exports = {
   isWindows,
   setEnvTrue,
   setEnvFalse,
-  log
+  log,
+  execSilent
 };
 
 

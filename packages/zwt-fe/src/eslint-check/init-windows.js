@@ -1,6 +1,6 @@
-const { fs, shell, chalk, ora } = require('../../shared-utils');
+const { fs, chalk, ora } = require('../../shared-utils');
 const utils = require('../../utils');
-const log = utils.log;
+const { log, execSilent } = utils;
 
 // loading动效
 const spinner = ora();
@@ -23,6 +23,7 @@ const SCRIPTS = constVar.scripts;
 * 8.【可选】写入到PATH变量，sourcetree使用
 * */
 async function installWindows() {
+  log('当前环境：windows');
   await installEslint();
   await installHusky();
 }
@@ -40,10 +41,11 @@ async function installEslint() {
   log('2执行完成: 写入.eslintrc.js');
 
   // 3. 写入.eslintignore, 如果有node_modules则忽略node_modules
-  shell.exec(`echo "# 插件目录\r\nsrc/assets/**/*.js" >> ${PATH.USE_ESLINTIGNORE}`);
+  execSilent(`echo #  插件目录 >> ${PATH.USE_ESLINTIGNORE}`);
+  execSilent(`echo src/assets/**/*.js >> ${PATH.USE_ESLINTIGNORE}`);
   const eslintIgnoreFile = fs.readFileSync(PATH.USE_ESLINTIGNORE, 'utf8');
   if (!eslintIgnoreFile.includes('node_modules')) {
-    shell.exec(`echo "node_modules" >> ${PATH.USE_ESLINTIGNORE}`);
+    execSilent(`echo node_modules >> ${PATH.USE_ESLINTIGNORE}`);
   }
   log('3执行完成: 写入.eslintignore');
 
@@ -69,13 +71,16 @@ async function installHusky() {
   preCommitFile = preCommitFile.replace(/npm test\n/g, '');
   fs.writeFileSync(PATH.USE_PRECOMMIT, preCommitFile);
   if (!preCommitFile.includes('npm run lint')) {
-    shell.exec(`echo "npm run lint" >> ${PATH.USE_PRECOMMIT}`);
+    execSilent(`echo npm run lint >> ${PATH.USE_PRECOMMIT}`);
   }
   log('6执行完成: 写入 .husky/pre-commit钩子');
 
-  // 3. 写入到path环境变量，sourceTree用
-  shell.exec(`echo "export PATH=\\"$(dirname $(which node)):\\$PATH\\"" > ${PATH.USE_PATH_HUSKYRC_WINDOWS}`);
-  log('7执行完成: 写入到 path环境变量');
+  /*
+  * 3. 写入到path环境变量，sourceTree用
+  * todo: exec默认为cmd.exe，cmd下 $xx无法获取环境变量
+  * */
+  // execSilent(`echo "export PATH=\\"$(dirname $(which node)):\\$PATH\\"" > ${PATH.USE_PATH_HUSKYRC_WINDOWS}`);
+  // log('7执行完成: 写入到 path环境变量');
   console.log(chalk.green('husky 安装成功'));
 }
 

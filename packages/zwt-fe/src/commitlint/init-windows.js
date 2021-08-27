@@ -69,14 +69,18 @@ async function installCommitlint() {
   }
   if (!hasCommitlint()) {
     log('has not commitlint in commit-msg');
-    shell.exec('npx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"', { silent: true });
+    // mac会比windows少一个 $1，但测试没有影响
+    // husky官方文档需要$1，commitlint官方文档不需要$1
+    // shell.exec('npx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"', { silent: true });
+    shell.exec('npx husky add .husky/commit-msg "npx --no-install commitlint --edit"', { silent: true });
   }
   log('3执行完成: husky添加钩子commit-msg');
 
   // 4.【可选】测试效果
   if (showEnv()) {
     log('4执行完成: 测试效果');
-    shell.exec('echo "foo" | ./node_modules/.bin/commitlint');
+    // todo: windows下乱码，暂时隐藏
+    // shell.exec('echo "foo" | ./node_modules/.bin/commitlint');
   }
 
   spinner.succeed(chalk.green('commitlint 安装成功'));
@@ -152,8 +156,14 @@ async function installChangeLog() {
 async function updateTips() {
   console.log('开始更新 tips.md');
   // 1. 写入 tips.md
-  const cmdUpdateTips = `less ${PATH.IN_TIPS_MD} >> ${PATH.USE_TIPS_MD}`;
-  shell.exec(cmdUpdateTips, { silent: true });
+  const tips = fs.readFileSync(PATH.IN_TIPS_MD, 'utf8');
+  const isExistTips = fs.existsSync(PATH.USE_TIPS_MD);
+  let tipsFinal = '';
+  if (isExistTips) {
+    tipsFinal = fs.readFileSync(PATH.USE_TIPS_MD, 'utf8');
+  }
+  tipsFinal += tips;
+  fs.outputFileSync(PATH.USE_TIPS_MD, tipsFinal);
   log('10执行完成: 更新tips.md');
 
   spinner.succeed(chalk.green('tips.md 更新成功'));

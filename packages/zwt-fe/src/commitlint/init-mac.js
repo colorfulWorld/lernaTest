@@ -45,6 +45,7 @@ async function installMac() {
   await installCommitlint();
   await installGitCZ();
   await installChangeLog();
+  await updateTips();
 }
 
 // 1. 安装 comminlint
@@ -145,6 +146,17 @@ async function installChangeLog() {
   log('9执行完成: 写入package.json');
 
   spinner.succeed(chalk.green('change log 安装成功'));
+}
+
+// 4. 更新tips.md
+async function updateTips() {
+  console.log('开始更新 tips.md');
+  // 1. 写入 tips.md
+  const cmdUpdateTips = `less ${PATH.IN_TIPS_MD} >> ${PATH.USE_TIPS_MD}`;
+  shell.exec(cmdUpdateTips, { silent: true });
+  log('10执行完成: 更新tips.md');
+
+  spinner.succeed(chalk.green('tips.md 更新成功'));
 }
 
 module.exports = {

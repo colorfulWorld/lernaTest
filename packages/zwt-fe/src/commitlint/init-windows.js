@@ -152,7 +152,7 @@ async function installChangeLog() {
 
 // 4. 更新tips.md
 async function updateTips() {
-  console.log('开始更新 tips.md');
+  log('开始更新 tips.md');
   // 1. 写入 tips.md
   const tips = fs.readFileSync(PATH.IN_TIPS_MD, 'utf8');
   const isExistTips = fs.existsSync(PATH.USE_TIPS_MD);

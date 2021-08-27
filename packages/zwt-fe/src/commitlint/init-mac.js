@@ -148,7 +148,7 @@ async function installChangeLog() {
 
 // 4. 更新tips.md
 async function updateTips() {
-  console.log('开始更新 tips.md');
+  log('开始更新 tips.md');
   // 1. 写入 tips.md
   const cmdUpdateTips = `less ${PATH.IN_TIPS_MD} >> ${PATH.USE_TIPS_MD}`;
   shell.exec(cmdUpdateTips, { silent: true });

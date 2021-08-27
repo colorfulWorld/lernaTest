@@ -7,7 +7,9 @@
     "test": "eslint",
     "lint": "./node_modules/.bin/eslint --ext .js,.vue ./",
     "lint:fix": "./node_modules/.bin/eslint --fix --ext .js,.vue ./",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "changelog:all": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "bin": {
     "zwt": "./index.js"
@@ -29,10 +31,19 @@
     "fs-extra": "^7.0.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "babel-eslint": "^10.1.0",
+    "conventional-changelog-cli": "^2.1.1",
     "eslint": "^7.32.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-vue": "^7.16.0",
+    "git-cz": "^4.7.6",
     "husky": "^7.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/git-cz"
+    }
   }
 }

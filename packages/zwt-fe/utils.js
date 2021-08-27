@@ -13,6 +13,7 @@ const values = Object.values(data);
 let ENV_ZWT_DEV = false;
 const setEnvTrue = () => ENV_ZWT_DEV = true;
 const setEnvFalse = () => ENV_ZWT_DEV = false;
+const showEnv = () => ENV_ZWT_DEV;
 
 const getList = function () {
   return values.map(x => `${x.key} | ${x.description}`);
@@ -56,17 +57,26 @@ function getInitVersions(path) {
 }
 
 // NPM安装依赖
-const npmInstall = async function (command, args) {
+const spinnerTextDefault = {
+  start: '正在下载依赖...',
+  succeed: '下载依赖成功！',
+  fail: '下载依赖失败！'
+};
+const npmInstall = async function (command, args, spinnerText = spinnerTextDefault) {
   return new Promise((resolve) => {
-    spinner.start('正在下载依赖...\r\n');
+    if (Object.keys(spinnerText).length < 3) {
+      log(`npmInstall.spinnerText已重置: ${command} ${spinnerText}`);
+      spinnerText = spinnerTextDefault;
+    }
+    spinner.start(`${spinnerText.start}\r\n`);
     shell.exec(command, args, function (code, stdout, stderr) {
       // todo: 如何判断失败
       if (code > 0) {
-        spinner.fail( chalk.red('下载依赖失败！'));
+        spinner.fail( chalk.red(`${spinnerText.fail}`));
         log('stderr: ', stderr);
         process.exit(1);
       }
-      spinner.succeed('下载依赖成功！');
+      spinner.succeed(`${spinnerText.succeed}`);
       resolve(stdout);
     });
   });
@@ -108,6 +118,7 @@ module.exports = {
   isWindows,
   setEnvTrue,
   setEnvFalse,
+  showEnv,
   log,
   execSilent
 };

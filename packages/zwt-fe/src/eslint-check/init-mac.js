@@ -26,6 +26,7 @@ async function installMac() {
   log('当前环境：mac');
   await installEslint();
   await installHusky();
+  await updateTipsEslintCheck();
 }
 async function installEslint() {
   console.log('开始安装 eslint');
@@ -79,6 +80,12 @@ async function installHusky() {
   log('7执行完成: 写入到 path环境变量');
   console.log(chalk.green('husky 安装成功'));
 }
+
+// 3. 更新tips.md
+async function updateTipsEslintCheck() {
+  await utils.updateTips(PATH.USE_TIPS_MD, PATH.IN_TIPS_MD);
+}
+
 
 module.exports = {
   installMac

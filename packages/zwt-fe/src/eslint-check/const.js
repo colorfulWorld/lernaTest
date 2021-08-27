@@ -9,7 +9,9 @@ const PATH = {
   IN_VERSION: resolve(__dirname, './version.json'),
   USE_PRECOMMIT: './.husky/pre-commit',
   USE_PATH_HUSKYRC_MAC: '~/.huskyrc',
-  USE_PATH_HUSKYRC_WINDOWS: '~/.huskyrc'
+  USE_PATH_HUSKYRC_WINDOWS: '~/.huskyrc',
+  IN_TIPS_MD: resolve(__dirname, './tips.md'),
+  USE_TIPS_MD: './tips.md'
 };
 
 // package.json中Scripts

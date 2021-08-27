@@ -107,6 +107,45 @@ const execSilent = (cmd, options) => {
   shell.exec(cmd, options);
 };
 
+/*
+* 更新tips.md
+* usePath: 使用时路径
+* inPath: 开发时路径
+* */
+async function updateTips(usePath, inPath) {
+  if (isMac()) {
+    await updateTipsMac(usePath, inPath);
+  } else if (isWindows()) {
+    await updateTipsWindows(usePath, inPath);
+  } else {
+    log('当前不是Mac或Windows平台');
+  }
+}
+async function updateTipsMac(usePath, inPath) {
+  log('开始更新 tips.md');
+  // 写入 tips.md
+  const cmdUpdateTips = `less ${inPath} >> ${usePath}`;
+  shell.exec(cmdUpdateTips, { silent: true });
+  log('执行完成: 更新tips.md');
+
+  spinner.succeed(chalk.green('tips.md 更新成功'));
+}
+async function updateTipsWindows(usePath, inPath) {
+  log('开始更新 tips.md');
+  // 写入 tips.md
+  const tips = fs.readFileSync(inPath, 'utf8');
+  const isExistTips = fs.existsSync(usePath);
+  let tipsFinal = '';
+  if (isExistTips) {
+    tipsFinal = fs.readFileSync(usePath, 'utf8');
+  }
+  tipsFinal += tips;
+  fs.outputFileSync(usePath, tipsFinal);
+  log('执行完成: 更新tips.md');
+
+  spinner.succeed(chalk.green('tips.md 更新成功'));
+}
+
 module.exports = {
   templatesJson: data,
   getList,
@@ -120,7 +159,8 @@ module.exports = {
   setEnvFalse,
   showEnv,
   log,
-  execSilent
+  execSilent,
+  updateTips
 };
 
 

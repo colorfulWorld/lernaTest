@@ -4,7 +4,8 @@ const {
   getInitVersions,
   npmInstall,
   showEnv,
-  addScript
+  addScript,
+  updateTips
 } = require('../../utils');
 
 // loading动效
@@ -43,7 +44,7 @@ async function installMac() {
   await installCommitlint();
   await installGitCZ();
   await installChangeLog();
-  await updateTips();
+  await updateTipsCommitlint();
 }
 
 // 1. 安装 comminlint
@@ -147,14 +148,8 @@ async function installChangeLog() {
 }
 
 // 4. 更新tips.md
-async function updateTips() {
-  log('开始更新 tips.md');
-  // 1. 写入 tips.md
-  const cmdUpdateTips = `less ${PATH.IN_TIPS_MD} >> ${PATH.USE_TIPS_MD}`;
-  shell.exec(cmdUpdateTips, { silent: true });
-  log('10执行完成: 更新tips.md');
-
-  spinner.succeed(chalk.green('tips.md 更新成功'));
+async function updateTipsCommitlint() {
+  await updateTips(PATH.USE_TIPS_MD, PATH.IN_TIPS_MD);
 }
 
 module.exports = {

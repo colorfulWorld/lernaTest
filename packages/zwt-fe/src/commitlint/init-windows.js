@@ -1,6 +1,4 @@
 const { fs, shell, chalk, ora } = require('../../shared-utils');
-// const utils = require('../../utils');
-// const log = utils.log;
 const {
   log,
   getInitVersions,

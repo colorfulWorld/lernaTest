@@ -1,3 +1,12 @@
+## [1.1.1](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.0...v1.1.1) (2021-09-01)
+
+
+### Features
+
+* **eslint-eheck:** js、vue缩进改为4个空格 ([6e4bf56](http://10.124.163.76:8888/qiujb/zwt-fe/commits/6e4bf56648753aa4e4ae18675abe96b1539098ee))
+
+
+
 # [1.1.0](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.0.2...v1.1.0) (2021-08-27)
 
 

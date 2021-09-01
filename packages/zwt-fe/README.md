@@ -15,3 +15,5 @@
 
 - [ ] `windows` 平台： `eslint+husky` 配置 `~/.huksy` 中的 `PATH` 环境变量
 - [ ] `windows` + `mac` 平台：添加 `eslint-loader`，并配置 `webpack.dev.js`
+- [ ] 安装时可选依赖的 `versions` 版本，添加多个 `version` 文件
+- [ ] 配置 `less/css` 缩进等格式

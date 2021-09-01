@@ -32,7 +32,8 @@
 
 #### 终端命令
 
-- `git cz` 或 `git-cz`： 以工作流的方式输入符合规则的 `commit message`
-- `npm run changelog`:  在 `CHANGELOG.md` 内生成自上次 `npm run changelog` 后更新的 `git` 提交记录。只添加在最后，不覆盖文件。
+- `git cz` 或 `git-cz`： 以工作流的方式输入符合规则的 `commit message`。
+- `npm run changelog`:  在 `CHANGELOG.md` 内生成自上次 `npm run changelog` 后至 `package.json.version` 更新之间的 `git` 提交记录。只添加在最后，不覆盖文件。
+  - PS：所以，使用 `npm run changelog` 更新记录前，需手动修改 `package.json` 中的 `version`，或使用 `npm version major|minor|patch` 自动更新 `package.json` 中的 `version`。
 - `npm run changelog:all`：在 `CHANGELOG.md` 内生成从项目创建开始到现在的 `git` 提交记录，会覆盖文件。
 

@@ -8,9 +8,9 @@ const chalk = require('chalk');
 * 导出原生依赖
 * */
 module.exports = {
-  fs,
-  shell,
-  resolve,
-  ora,
-  chalk
+    fs,
+    shell,
+    resolve,
+    ora,
+    chalk
 };

@@ -19,10 +19,11 @@ module.exports = {
     'vue'
   ],
   'rules': {
-    'indent': ['error', 2],
+    'indent': ['error', 4],
     'quotes': ['error', 'single'],
     'semi': ['error', 'always'],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'vue/html-indent': ['error', 4]
   }
 };

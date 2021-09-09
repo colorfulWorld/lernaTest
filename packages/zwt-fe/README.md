@@ -3,6 +3,10 @@
 脚本用于一键安装功能所需依赖，目前支持以下功能：
 
 - **eslint+husky**: `commit` 提交代码时校验 `npm run lint`，使用 `eslint` 校验代码，通过才可 `commit`。可使用 `npm run lint:fix` 格式化代码。
+- **commitlint+git cz+changelog**：
+  - 提交代码时校验 `commit message`，符合规范的才可提交。
+  - 使用 `git cz` 代替 `git commit`，用工作流问答的方式填写符合规范的 `commit message`。
+  - 使用 `npm run changelog` 或 `npm run changelog:all` 在 `CHANGELOG.md` 生成版本更新记录。
 
 
 

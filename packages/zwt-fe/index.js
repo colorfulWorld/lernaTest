@@ -38,10 +38,18 @@ function init() {
             message: '请选择要安装的功能',
             name: 'func',
             choices: utils.getList()
+        },{
+            type: 'list',
+            message: '请选择Eslint版本',
+            name: 'version',
+            choices: answer => utils.getMultiVersions(answer['func']),
+            default: answer => utils.getMultiVersions(answer['func'])[0],
+            when: answer => utils.hasMultiVersions(answer['func'])
         }
     ];
     prompt(promptList).then(answer => {
-        const key = answer['func'].split('|')[0].trim();
+        utils.setInitParams(answer);
+        const key = utils.getListKey(answer['func']);
         const url = utils.getListUrl(key);
         const funcModule = require(url);
         funcModule.main();

@@ -15,12 +15,19 @@ const setEnvTrue = () => ENV_ZWT_DEV = true;
 const setEnvFalse = () => ENV_ZWT_DEV = false;
 const showEnv = () => ENV_ZWT_DEV;
 
-const getList = function () {
-    return values.map(x => `${x.key} | ${x.description}`);
+let initParams = {};
+const setInitParams = answer => initParams = answer;
+const getInitParams = () => (console.log('initParams: ', initParams));
+
+const getList = () => values.map(x => `${x.key} | ${x.description}`);
+const getListKey = answer => answer.split('|')[0].trim();
+const getListKeys = () => values.map(x => x.key);
+const getListUrl = key => values.find(x => x.key === key).url;
+const getMultiVersions = function (value) {
+    const key = getListKey(value);
+    return values.find(x => x.key === key).multiVersions;
 };
-const getListUrl = function (key) {
-    return values.find(x => x.key === key).url;
-};
+const hasMultiVersions = value => !!getMultiVersions(value);
 
 /*
 * node15以上版本对应npm>=7,
@@ -44,9 +51,12 @@ const addScript = function (key = '', value = '') {
 
 /*
 * 获取npm install version版本
+* version = 0时不添加后缀，非0时，添加后缀
+* 例如：version.json, version_1.json, version-xxx_1.json
 * */
-function getInitVersions(path) {
-    const versions = fs.readJsonSync(path);
+function getInitVersions(path, PATH) {
+    let finalPath = getPathByVersion(path, PATH);
+    const versions = fs.readJsonSync(finalPath);
     let result = '';
     Object.keys(versions).map(x => {
         if (x !== 'version') {
@@ -54,6 +64,23 @@ function getInitVersions(path) {
         }
     });
     return result;
+}
+/*
+* 根据选择的version获取路径
+* 如未选择version，使用默认路径
+* */
+function getPathByVersion(path, PATH) {
+    let result = path;
+    if (initParams && initParams.version && PATH) {
+        let key = findKey(PATH, path);
+        result = PATH[`${key}_${initParams.version}`];
+    }
+    return result;
+}
+
+// 根据value获取对象的key
+function findKey (obj, value, compare = (a, b) => a === b) {
+    return Object.keys(obj).find(k => compare(obj[k], value));
 }
 
 // NPM安装依赖
@@ -148,10 +175,17 @@ async function updateTipsWindows(usePath, inPath) {
 
 module.exports = {
     templatesJson: data,
+    setInitParams,
+    getInitParams,
     getList,
+    getListKey,
+    getListKeys,
     getListUrl,
+    hasMultiVersions,
+    getMultiVersions,
     addScript,
     getInitVersions,
+    getPathByVersion,
     npmInstall,
     isMac,
     isWindows,

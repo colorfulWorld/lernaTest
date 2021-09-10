@@ -2,6 +2,16 @@
   "eslintCheck": {
     "key": "eslintCheck",
     "url": "./src/eslint-check/index.js",
+    "multiVersions": [
+      {
+        "name": "eslint v7",
+        "value": 0
+      },
+      {
+        "name": "eslint v5: 兼容idea2019.1.3之前版本",
+        "value": 1
+      }
+    ],
     "description": "代码提交前使用eslint校验"
   },
   "commitLint": {

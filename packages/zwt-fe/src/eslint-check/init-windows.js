@@ -31,7 +31,7 @@ async function installWindows() {
 async function installEslint() {
     console.log('开始安装 eslint');
     // 1. 安装依赖
-    const versions = utils.getInitVersions(PATH.IN_VERSION);
+    const versions = utils.getInitVersions(PATH.IN_VERSION, PATH);
     const commandStr = `npm install -D ${versions}`;
     await utils.npmInstall(commandStr, { async: true, silent: true });
     log('1执行完成: 安装eslint');

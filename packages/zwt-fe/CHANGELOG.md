@@ -1,3 +1,12 @@
+## [1.1.3](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.2...v1.1.3) (2021-09-10)
+
+
+### Features
+
+* eslintCheck新增选择eslint版本功能 ([b126f77](http://10.124.163.76:8888/qiujb/zwt-fe/commits/b126f775e0ec89d9cdbbf5194be2171101309cf2))
+
+
+
 ## [1.1.2](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.1...v1.1.2) (2021-09-01)
 
 

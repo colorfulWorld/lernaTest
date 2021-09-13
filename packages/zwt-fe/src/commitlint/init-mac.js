@@ -7,6 +7,9 @@ const {
     addScript,
     updateTips
 } = require('../../utils');
+const {
+    checkNodeVersion
+} = require('./utils');
 
 // loading动效
 const spinner = ora();
@@ -41,6 +44,7 @@ const SCRIPTS = constVar.scripts;
 
 async function installMac() {
     log('当前环境：mac');
+    checkNodeVersion(12);
     await installCommitlint();
     await installGitCZ();
     await installChangeLog();

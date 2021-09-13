@@ -35,8 +35,7 @@ const hasMultiVersions = value => !!getMultiVersions(value);
 * */
 const addScript = function (key = '', value = '') {
     // 获取NPM版本
-    let versionStr = shell.exec('node --version', { silent: true }).stdout.trim();
-    let version = Number(versionStr.match(/^v(\d*)\..*$/)[1]);
+    let version = getNodeVersion();
     // todo: package.json不存在
     if(version > 15) {
         shell.exec(`npm set-script ${key} "${value}"`);
@@ -48,6 +47,14 @@ const addScript = function (key = '', value = '') {
         log('node<15: ', key, value);
     }
 };
+/*
+* 获取node版本，
+* */
+function getNodeVersion() {
+    // 获取NPM版本
+    let versionStr = shell.exec('node --version', { silent: true }).stdout.trim();
+    return Number(versionStr.match(/^v(\d*)\..*$/)[1]);
+}
 
 /*
 * 获取npm install version版本
@@ -184,6 +191,7 @@ module.exports = {
     hasMultiVersions,
     getMultiVersions,
     addScript,
+    getNodeVersion,
     getInitVersions,
     getPathByVersion,
     npmInstall,

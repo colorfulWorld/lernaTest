@@ -1,3 +1,12 @@
+## [1.1.4](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.3...v1.1.4) (2021-09-13)
+
+
+### Features
+
+* commitlint: 添加node>=12版本校验 ([18b796b](http://10.124.163.76:8888/qiujb/zwt-fe/commits/18b796bf4e7f83b2ed7881d3fcd3c99e16e45aca))
+
+
+
 ## [1.1.3](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.2...v1.1.3) (2021-09-10)
 
 

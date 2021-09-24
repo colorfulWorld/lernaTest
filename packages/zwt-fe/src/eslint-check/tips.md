@@ -7,11 +7,15 @@
 #### 新增功能
 
 1. `git commit` 提交代码前自动使用 `npm run lint` `(eslint)` 对代码进行校验，校验通过才能提交成功。
-2. 添加终端命令 `npm run lint` 校验所有 `.vue, .js` 代码。
-3. 添加终端命令 `npm runl lint:fix` 校验并自动修复所有 `.vue,.js` 代码。
+   1. 目前会校验以下代码：
+   2. `.vue`: `html`、`[c,sa,sc,le]ss`、`js`。
+   3. `*.js`。
+   4. `*.[c,sa,sc,le]ss`。
+2. 添加终端命令 `npm run lint` 校验所有 `.vue, .js, .[c,sa,sc,le]ss` 代码。
+3. 添加终端命令 `npm runl lint:fix` 校验并自动修复所有 `.vue,.js, .[c,sa,sc,le]ss` 代码。
 
 #### 终端命令
 
-- `npm run lint`：校验所有 `.vue, .js` 代码。
-- `npm run lint:fix`：校验并自动修复所有 `.vue,.js` 代码。
+- `npm run lint`：校验所有 `.vue, .js, .[c,sa,sc,le]ss` 代码。
+- `npm run lint:fix`：校验并自动修复所有 `.vue, .js, .[c,sa,sc,le]ss` 代码。
 

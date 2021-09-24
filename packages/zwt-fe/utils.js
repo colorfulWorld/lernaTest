@@ -39,12 +39,12 @@ const addScript = function (key = '', value = '') {
     // todo: package.json不存在
     if(version > 15) {
         shell.exec(`npm set-script ${key} "${value}"`);
-        log('node>15: ', key, value);
+        log(`node>15: ${key}  ${value}`);
     } else {
         let json = fs.readJsonSync(PATH.USE_PACKAGE);
         json['scripts'][key] = value;
         fs.writeJsonSync(PATH.USE_PACKAGE, json, { spaces: 2 });
-        log('node<15: ', key, value);
+        log(`node<15: ${key}  ${value}`);
     }
 };
 /*
@@ -147,37 +147,54 @@ const execSilent = (cmd, options) => {
 * inPath: 开发时路径
 * */
 async function updateTips(usePath, inPath) {
+    const copyFileText = {
+        start: '开始更新 tips.md',
+        succeed: '执行完成: 更新tips.md'
+    };
+    await copyFile(inPath, usePath, false, copyFileText);
+    spinner.succeed(chalk.green('tips.md 更新成功'));
+}
+
+/*
+* inPath: 拷贝来源文件路径
+* usePath: 拷贝目的地文件路径
+* isCover: 是否覆盖已有目的地文件
+* copyFileText: log文案 {start: xx, succeed: yy}
+* */
+async function copyFile(inPath, usePath, isCover=false, copyFileText) {
+    const isLog = copyFileText && Object.keys(copyFileText) && Object.keys(copyFileText).length > 0;
     if (isMac()) {
-        await updateTipsMac(usePath, inPath);
+        await copyFileMac(inPath, usePath, isCover, copyFileText, isLog);
     } else if (isWindows()) {
-        await updateTipsWindows(usePath, inPath);
+        await copyFileWindows(inPath, usePath, isCover, copyFileText, isLog);
     } else {
         log('当前不是Mac或Windows平台');
     }
 }
-async function updateTipsMac(usePath, inPath) {
-    log('开始更新 tips.md');
-    // 写入 tips.md
-    const cmdUpdateTips = `less ${inPath} >> ${usePath}`;
-    shell.exec(cmdUpdateTips, { silent: true });
-    log('执行完成: 更新tips.md');
-
-    spinner.succeed(chalk.green('tips.md 更新成功'));
-}
-async function updateTipsWindows(usePath, inPath) {
-    log('开始更新 tips.md');
-    // 写入 tips.md
-    const tips = fs.readFileSync(inPath, 'utf8');
-    const isExistTips = fs.existsSync(usePath);
-    let tipsFinal = '';
-    if (isExistTips) {
-        tipsFinal = fs.readFileSync(usePath, 'utf8');
+async function copyFileMac(inPath, usePath, isCover, copyFileText, isLog) {
+    isLog && log(`mac平台: ${copyFileText.start}`);
+    // 拷贝写入文件
+    let cmdUpdateTips = `less ${inPath} >> ${usePath}`;
+    if (isCover) {
+        cmdUpdateTips = `less ${inPath} > ${usePath}`;
     }
-    tipsFinal += tips;
-    fs.outputFileSync(usePath, tipsFinal);
-    log('执行完成: 更新tips.md');
-
-    spinner.succeed(chalk.green('tips.md 更新成功'));
+    shell.exec(cmdUpdateTips, { silent: true });
+    isLog && log(`mac平台: ${copyFileText.succeed}`);
+}
+async function copyFileWindows(inPath, usePath, isCover, copyFileText, isLog){
+    isLog && log(`windows平台: ${copyFileText.start}`);
+    // 写入 tips.md
+    const content = fs.readFileSync(inPath, 'utf8');
+    let contentFinal = '';
+    if (!isCover) {
+        const isExistTips = fs.existsSync(usePath);
+        if (isExistTips) {
+            contentFinal = fs.readFileSync(usePath, 'utf8');
+        }
+    }
+    contentFinal += content;
+    fs.outputFileSync(usePath, contentFinal);
+    isLog && log(`windows平台: ${copyFileText.succeed}`);
 }
 
 module.exports = {
@@ -202,7 +219,8 @@ module.exports = {
     showEnv,
     log,
     execSilent,
-    updateTips
+    updateTips,
+    copyFile
 };
 
 

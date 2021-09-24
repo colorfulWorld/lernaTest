@@ -12,7 +12,7 @@
         "value": 1
       }
     ],
-    "description": "代码提交前使用eslint校验"
+    "description": "代码提交前使用eslint,stylelint校验"
   },
   "commitLint": {
     "key": "commitLint",

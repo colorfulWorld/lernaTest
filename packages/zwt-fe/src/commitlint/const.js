@@ -9,8 +9,8 @@ const PATH = {
     IN_VERSION_COMMITLINT: resolve(__dirname, './version-commitlint.json'),
     IN_VERSION_GITCZ: resolve(__dirname, './version-gitcz.json'),
     IN_VERSION_CHANGELOG: resolve(__dirname, './version-changelog.json'),
-    USE_PACKAGE_JSON: './package.json',
-    USE_HUSKY_SH: './.husky/_/husky.sh',
+    // USE_PACKAGE_JSON: './package.json',
+    // USE_HUSKY_SH: './.husky/_/husky.sh',
     USE_HUSKY_COMMIT_MSG: './.husky/commit-msg',
     IN_TIPS_MD: resolve(__dirname, './tips.md'),
     USE_TIPS_MD: './tips.md'

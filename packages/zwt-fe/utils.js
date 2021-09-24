@@ -3,7 +3,9 @@ const spinner = ora();
 
 const PATH = {
     IN_TEMPLATES: resolve(__dirname, './templates.json'),
-    USE_PACKAGE: './package.json'
+    USE_PACKAGE: './package.json',
+    USE_PACKAGE_JSON: './package.json',
+    USE_HUSKY_SH: './.husky/_/husky.sh'
 };
 
 const data = fs.readJsonSync(PATH.IN_TEMPLATES);
@@ -197,6 +199,22 @@ async function copyFileWindows(inPath, usePath, isCover, copyFileText, isLog){
     isLog && log(`windows平台: ${copyFileText.succeed}`);
 }
 
+/*
+* 是否已安装husky
+* */
+function hasInstallHusky() {
+    let isInPackageJson = false;
+    let isExistHuskySH = false;
+    const packageJson = fs.readJsonSync(PATH.USE_PACKAGE_JSON);
+    if (packageJson && packageJson.devDependencies && packageJson.devDependencies.husky) {
+        isInPackageJson = true;
+    }
+    if (fs.existsSync(PATH.USE_HUSKY_SH)) {
+        isExistHuskySH = true;
+    }
+    return isInPackageJson && isExistHuskySH;
+}
+
 module.exports = {
     templatesJson: data,
     setInitParams,
@@ -220,7 +238,8 @@ module.exports = {
     log,
     execSilent,
     updateTips,
-    copyFile
+    copyFile,
+    hasInstallHusky
 };
 
 

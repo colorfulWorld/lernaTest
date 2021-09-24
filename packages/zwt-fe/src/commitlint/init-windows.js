@@ -5,7 +5,8 @@ const {
     npmInstall,
     showEnv,
     addScript,
-    updateTips
+    updateTips,
+    hasInstallHusky
 } = require('../../utils');
 const {
     checkNodeVersion
@@ -88,18 +89,18 @@ async function installCommitlint() {
 
     spinner.succeed(chalk.green('commitlint 安装成功'));
 }
-function hasInstallHusky() {
-    let isInPackageJson = false;
-    let isExistHuskySH = false;
-    const packageJson = fs.readJsonSync(PATH.USE_PACKAGE_JSON);
-    if (packageJson && packageJson.devDependencies && packageJson.devDependencies.husky) {
-        isInPackageJson = true;
-    }
-    if (fs.existsSync(PATH.USE_HUSKY_SH)) {
-        isExistHuskySH = true;
-    }
-    return isInPackageJson && isExistHuskySH;
-}
+// function hasInstallHusky() {
+//     let isInPackageJson = false;
+//     let isExistHuskySH = false;
+//     const packageJson = fs.readJsonSync(PATH.USE_PACKAGE_JSON);
+//     if (packageJson && packageJson.devDependencies && packageJson.devDependencies.husky) {
+//         isInPackageJson = true;
+//     }
+//     if (fs.existsSync(PATH.USE_HUSKY_SH)) {
+//         isExistHuskySH = true;
+//     }
+//     return isInPackageJson && isExistHuskySH;
+// }
 function hasCommitlint() {
     if (!fs.existsSync(PATH.USE_HUSKY_COMMIT_MSG)) {
         return false;

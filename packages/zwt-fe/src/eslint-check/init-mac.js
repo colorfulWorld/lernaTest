@@ -100,8 +100,11 @@ async function installStylelint() {
 async function installHusky() {
     console.log('开始安装 husky');
     // 1. 安装husky并重新npm install以添加husky pre-commit钩子
-    const commandStr = 'npx husky-init && npm install';
-    await utils.npmInstall(commandStr, { async: true, silent: true });
+    const hasInstallHusky = utils.hasInstallHusky();
+    if (!hasInstallHusky) {
+        const commandStr = 'npx husky-init && npm install';
+        await utils.npmInstall(commandStr, { async: true, silent: true });
+    }
     log('9执行完成: 安装 huksy 并 npm install');
 
     // 2. 写入.husky/pre-commit钩子，如果有npm run lint则忽略

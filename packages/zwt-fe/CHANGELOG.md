@@ -1,3 +1,18 @@
+## [1.1.5](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.4...v1.1.5) (2021-09-26)
+
+
+### Features
+
+* eslintCheck新增stylelint校验 ([ad74015](http://10.124.163.76:8888/qiujb/zwt-fe/commits/ad7401577bac9eb562e3d408f94fd24a41177761))
+* eslintCheck添加是否已安装husky校验 ([c26793f](http://10.124.163.76:8888/qiujb/zwt-fe/commits/c26793f62f0f2b43c9f6dca0b872309283c08cc6))
+
+
+### Reverts
+
+* pre-commit还原npm run lint ([58453b9](http://10.124.163.76:8888/qiujb/zwt-fe/commits/58453b9eb0e7b20a4c75a2d1a67f6562472e442b))
+
+
+
 ## [1.1.4](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.3...v1.1.4) (2021-09-13)
 
 

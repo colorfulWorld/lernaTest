@@ -1,3 +1,16 @@
+## [1.1.7](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.6...v1.1.7) (2021-10-19)
+
+
+### Features
+
+* eslintCheck 添加console校验 ([7aff48c](http://10.124.163.76:8888/qiujb/zwt-fe/commits/7aff48c1cf778f143ed5c7e4c7500a26898273b8))
+
+
+
+## [1.1.6](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.5...v1.1.6) (2021-09-26)
+
+
+
 ## [1.1.5](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.4...v1.1.5) (2021-09-26)
 
 

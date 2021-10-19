@@ -23,8 +23,8 @@ module.exports = {
         'indent': ['error', 4],
         'quotes': ['error', 'single'],
         'semi': ['error', 'always'],
-        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        // 'no-console': 'error', // nodejs需要用console向用户展示信息
+        'no-debugger': 'error',
         'vue/html-indent': ['error', 4],
         'vue/max-attributes-per-line': ['error', {
             'singleline': 4

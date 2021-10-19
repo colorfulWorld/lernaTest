@@ -58,7 +58,7 @@ async function installEslint() {
     * eslint会自动忽略 node_modules 和 .xxx文件 和 ./**.*.*文件, 除了 .eslintrc.*
     * https://eslint.org/docs/user-guide/configuring/ignoring-code
     * */
-    shell.exec(`echo "# 插件目录\r\nsrc/assets/**/*.js" >> ${PATH.USE_ESLINTIGNORE}`);
+    shell.exec(`echo "# 插件目录\r\nsrc/assets/**/*.js\r\ndist/" >> ${PATH.USE_ESLINTIGNORE}`);
     log('3执行完成: 写入.eslintignore');
 
     // 4. 写入package.json: npm run eslint, npm run eslint:fix

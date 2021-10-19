@@ -60,6 +60,7 @@ async function installEslint() {
     * */
     execSilent(`echo #  插件目录 >> ${PATH.USE_ESLINTIGNORE}`);
     execSilent(`echo src/assets/**/*.js >> ${PATH.USE_ESLINTIGNORE}`);
+    execSilent(`echo dist/ >> ${PATH.USE_ESLINTIGNORE}`);
     log('3执行完成: 写入.eslintignore');
 
     // 4. 写入package.json: npm run eslint, npm run eslint:fix

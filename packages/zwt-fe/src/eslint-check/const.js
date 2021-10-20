@@ -31,8 +31,8 @@ const SCRIPTS = new Map([
     ['lintFix', { key: 'lint:fix', value: './node_modules/.bin/eslint --fix --ext .js,.vue ./' }]
 ]);
 const STYLELINTSCRIPTS = new Map([
-    ['lint', { key: 'lint', value: 'npx eslint --ext .js,.vue ./ && npx stylelint **/*.{css,scss,sass,less,vue}' }],
-    ['lintFix', { key: 'lint:fix', value: 'npx eslint --fix --ext .js,.vue ./ && npx stylelint **/*.{css,scss,sass,less,vue} --fix' }]
+    ['lint', { key: 'lint', value: 'npx eslint --ext .js,.vue ./ && npx stylelint **/*.{css,scss,sass,less,vue} --aei' }],
+    ['lintFix', { key: 'lint:fix', value: 'npx eslint --fix --ext .js,.vue ./ && npx stylelint **/*.{css,scss,sass,less,vue} --fix --aei' }]
 ]);
 
 module.exports = {

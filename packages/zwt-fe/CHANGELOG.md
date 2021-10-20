@@ -1,3 +1,12 @@
+## [1.1.8](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.7...v1.1.8) (2021-10-20)
+
+
+### Features
+
+* eslintCheck stylelint无匹配文件时不报错 ([f491781](http://10.124.163.76:8888/qiujb/zwt-fe/commits/f4917815340161d79b9d1b853c7b4002c4b51186))
+
+
+
 ## [1.1.7](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.6...v1.1.7) (2021-10-19)
 
 

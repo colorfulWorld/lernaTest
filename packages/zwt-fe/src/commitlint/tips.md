@@ -37,7 +37,43 @@
 #### 终端命令
 
 - `git cz` 或 `git-cz`： 以工作流的方式输入符合规则的 `commit message`。
-- `npm run changelog`:  在 `CHANGELOG.md` 内生成自上次 `npm run changelog` 后至 `package.json.version` 更新之间的 `git` 提交记录。只添加在最后，不覆盖文件。
-  - PS：所以，使用 `npm run changelog` 更新记录前，需手动修改 `package.json` 中的 `version`，或使用 `npm version major|minor|patch` 自动更新 `package.json` 中的 `version`。
-- `npm run changelog:all`：在 `CHANGELOG.md` 内生成从项目创建开始到现在的 `git` 提交记录，会覆盖文件。
+
+- `npm run changelog`：在 `CHANGELOG.md` 内生成 git提交记录，只添加在最后，不覆盖文件
+
+- `npm run changelog:all`：在 `CHANGELOG.md` 内生成**从项目创建开始到现在**的 `git` 提交记录，会覆盖文件。
+
+- `npm run changelog` 规则：
+
+  - 规则：生成 `CHANGELOG.md` 内最后一个 `version` 到当前 `package.json.version` 之间的git提交记录。所以，生成前需 **手动修改package.json中的version**，或使用 **`npm version major|minor|patch` 自动更新package.json中的version**；
+
+  - 规则：根据 package.json中version的 **tag** 来匹配，生成2个 **tag** 之间的记录；[官方说明](https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-cli/README.md)
+
+  - 规则：只会生成 `feat`、`fix`、`revert` 的记录；
+
+  - **推荐的流程**
+
+    1. `git commit` 代码；
+    2. 更新 `package.json` 中的 `version`；
+    3. 执行命令 `npm run changelog`；
+    4. `git commit ` `package.json` 和 `CHANGELOG.md` 文件；
+    5. 打标签 `Tag`；
+    6. `git push`；
+
+  - **使用 `npm version`**
+
+    - 在 `package.json` 添加以下代码：
+
+      - ```json
+        {
+          "scripts": {
+            "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+          }
+        }
+        ```
+
+    - `git commit` 代码；
+
+    - 执行命令 `npm version [patch|minor|major]`
+
+    - `git push`；
 

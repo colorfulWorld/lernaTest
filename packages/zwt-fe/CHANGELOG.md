@@ -1,3 +1,17 @@
+## [1.1.9](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.8...v1.1.9) (2021-10-21)
+
+
+### Bug Fixes
+
+* common package.json缩进改为4个空格 ([8ce7b56](http://10.124.163.76:8888/qiujb/zwt-fe/commits/8ce7b566ac4ee557839f5c02c5fbcc7f84d71b2d))
+
+
+### Features
+
+* commitlint 更新tips.md ([2d81f54](http://10.124.163.76:8888/qiujb/zwt-fe/commits/2d81f54bfd83545dd92573fd6ec63d88bafeba37))
+
+
+
 ## [1.1.8](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.7...v1.1.8) (2021-10-20)
 
 

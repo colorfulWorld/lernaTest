@@ -45,7 +45,7 @@ const addScript = function (key = '', value = '') {
     } else {
         let json = fs.readJsonSync(PATH.USE_PACKAGE);
         json['scripts'][key] = value;
-        fs.writeJsonSync(PATH.USE_PACKAGE, json, { spaces: 2 });
+        fs.writeJsonSync(PATH.USE_PACKAGE, json, { spaces: 4 });
         log(`node<15: ${key}  ${value}`);
     }
 };

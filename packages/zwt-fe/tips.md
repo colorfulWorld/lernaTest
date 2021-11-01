@@ -11,6 +11,9 @@
    4. `*.[c,sa,sc,le]ss`。
 2. 添加终端命令 `npm run lint` 校验所有 `.vue, .js, .[c,sa,sc,le]ss` 代码。
 3. 添加终端命令 `npm runl lint:fix` 校验并自动修复所有 `.vue,.js, .[c,sa,sc,le]ss` 代码。
+4. 使用 `HUSKY=0 xxx`，可跳过 `husky` 的钩子，即 `npm run lint` 校验。比如：
+   1. `HUSKY=0 git commit -m "xxx"`；
+   2. `HUSKY=0 git cz` (需安装 `commitlint` )；
 
 #### 终端命令
 
@@ -55,3 +58,4 @@
 - `npm run changelog`:  在 `CHANGELOG.md` 内生成自上次 `npm run changelog` 后更新的 `git` 提交记录。只添加在最后，不覆盖文件。
 - `npm run changelog:all`：在 `CHANGELOG.md` 内生成从项目创建开始到现在的 `git` 提交记录，会覆盖文件。
 
+---

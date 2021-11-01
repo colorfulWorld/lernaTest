@@ -1,3 +1,13 @@
+## [1.1.10](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.9...v1.1.10) (2021-11-01)
+
+
+### Features
+
+* eslintCheck 更新eslint规则，适配touch_sub_front ([e296d16](http://10.124.163.76:8888/qiujb/zwt-fe/commits/e296d16a19cdf8062be994c4eaa7b52a30bfdb93))
+* eslintCheck 更新stylelint规则，适配touch_sub_front ([5b39259](http://10.124.163.76:8888/qiujb/zwt-fe/commits/5b3925966b0c30b248808859e6d260f09d699ea4))
+
+
+
 ## [1.1.9](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.8...v1.1.9) (2021-10-21)
 
 

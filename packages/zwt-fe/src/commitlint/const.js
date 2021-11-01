@@ -18,7 +18,7 @@ const PATH = {
 
 // package.json中Scripts
 const SCRIPTS = new Map([
-    ['changelog', { key: 'changelog', value: 'conventional-changelog -p angular -i CHANGELOG.md -s'}],
+    ['changelog', { key: 'changelog', value: 'conventional-changelog -p angular -i CHANGELOG.md -s' }],
     ['changelogAll', { key: 'changelog:all', value: 'conventional-changelog -p angular -i CHANGELOG.md -s -r 0' }]
 ]);
 

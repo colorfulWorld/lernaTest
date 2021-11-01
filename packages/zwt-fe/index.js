@@ -38,7 +38,7 @@ function init() {
             message: '请选择要安装的功能',
             name: 'func',
             choices: utils.getList()
-        },{
+        }, {
             type: 'list',
             message: '请选择Eslint版本',
             name: 'version',

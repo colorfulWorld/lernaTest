@@ -11,7 +11,7 @@ function checkNodeVersion(ver) {
         process.exit(1);
     }
 }
-function checkFail () {
+function checkFail() {
     const tips =  `当前node版本过低，请使用node>=12版本，建议使用nvm或nvm-windows管理node版本;
 nvm: https://github.com/nvm-sh/nvm;
 nvm-windows: https://github.com/coreybutler/nvm-windows;`;

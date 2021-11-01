@@ -27,7 +27,7 @@ const PATH = {
 // package.json中Scripts
 // todo: 是否拆分 eslint/stylelint/lint
 const SCRIPTS = new Map([
-    ['lint', { key: 'lint', value: './node_modules/.bin/eslint --ext .js,.vue ./'}],
+    ['lint', { key: 'lint', value: './node_modules/.bin/eslint --ext .js,.vue ./' }],
     ['lintFix', { key: 'lint:fix', value: './node_modules/.bin/eslint --fix --ext .js,.vue ./' }]
 ]);
 const STYLELINTSCRIPTS = new Map([

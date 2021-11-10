@@ -1,3 +1,12 @@
+## [1.1.11](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.10...v1.1.11) (2021-11-10)
+
+
+### Features
+
+* eslintCheck 添加eslint,stylelint cache ([6948f54](http://10.124.163.76:8888/qiujb/zwt-fe/commits/6948f54d100ad6012655240a59f77ddc13f98f53))
+
+
+
 ## [1.1.10](http://10.124.163.76:8888/qiujb/zwt-fe/compare/v1.1.9...v1.1.10) (2021-11-01)
 
 

@@ -21,18 +21,19 @@ const PATH = {
     USE_PATH_HUSKYRC_MAC: '~/.huskyrc',
     USE_PATH_HUSKYRC_WINDOWS: '~/.huskyrc',
     IN_TIPS_MD: resolve(__dirname, './tips.md'),
-    USE_TIPS_MD: './tips.md'
+    USE_TIPS_MD: './tips.md',
+    USE_GITIGNORE: './.gitignore'
 };
 
 // package.json中Scripts
 // todo: 是否拆分 eslint/stylelint/lint
 const SCRIPTS = new Map([
-    ['lint', { key: 'lint', value: './node_modules/.bin/eslint --ext .js,.vue ./' }],
-    ['lintFix', { key: 'lint:fix', value: './node_modules/.bin/eslint --fix --ext .js,.vue ./' }]
+    ['lint', { key: 'lint', value: 'npx eslint --cache --ext .js,.vue ./' }],
+    ['lintFix', { key: 'lint:fix', value: 'npx eslint --cache --fix --ext .js,.vue ./' }]
 ]);
 const STYLELINTSCRIPTS = new Map([
-    ['lint', { key: 'lint', value: 'npx eslint --ext .js,.vue ./ && npx stylelint **/*.{css,scss,sass,less,vue} --aei' }],
-    ['lintFix', { key: 'lint:fix', value: 'npx eslint --fix --ext .js,.vue ./ && npx stylelint **/*.{css,scss,sass,less,vue} --fix --aei' }]
+    ['lint', { key: 'lint', value: 'npx eslint --cache --ext .js,.vue ./ && npx stylelint **/*.{css,scss,sass,less,vue} --cache --aei' }],
+    ['lintFix', { key: 'lint:fix', value: 'npx eslint --cache --fix --ext .js,.vue ./ && npx stylelint **/*.{css,scss,sass,less,vue} --cache --fix --aei' }]
 ]);
 
 module.exports = {

@@ -61,12 +61,14 @@ async function installEslint() {
     shell.exec(`echo "# 插件目录\r\nsrc/assets/**/*.js\r\ndist/" >> ${PATH.USE_ESLINTIGNORE}`);
     log('3执行完成: 写入.eslintignore');
 
-    // 4. 写入package.json: npm run eslint, npm run eslint:fix
+    // 4.1 写入package.json: npm run eslint, npm run eslint:fix
+    // 4.2 写入.gitignore: .eslintcache
     const scripts = [...SCRIPTS.values()];
     scripts.map(x => {
         utils.addScript(x.key, x.value);
     });
-    log('4执行完成: 写入package.json');
+    shell.exec(`echo ".eslintcache" >> ${PATH.USE_GITIGNORE}`);
+    log('4执行完成: 写入package.json, .gitignore');
     spinner.succeed(chalk.green('eslint 安装成功'));
 
     // 5. todo: 写入webpack.dev.js
@@ -87,12 +89,14 @@ async function installStylelint() {
     await utils.copyFile(PATH.IN_STYLELINTIGNORE, PATH.USE_STYLELINTIGNORE, true);
     log('7执行完成: 写入.stylelintignore');
 
-    // 4. 写入package.json: npm run lint, npm run lint:fix
+    // 4.1 写入package.json: npm run lint, npm run lint:fix
+    // 4.2 写入.gitignore: .stylelintcache
     const stylelintScripts = [...STYLELINTSCRIPTS.values()];
     stylelintScripts.map(x => {
         utils.addScript(x.key, x.value);
     });
-    log('8执行完成: 写入package.json');
+    shell.exec(`echo ".stylelintcache" >> ${PATH.USE_GITIGNORE}`);
+    log('8执行完成: 写入package.json, .gitignore');
     spinner.succeed(chalk.green('stylelint 安装成功'));
 
     // 5. todo: 写入webpack.dev.js

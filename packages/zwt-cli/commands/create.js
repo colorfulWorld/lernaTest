@@ -90,14 +90,14 @@ function downloadDepend(projectName) {
       } else {
         spinner.succeed()
         const fileName = `${projectName}/package.json`
-
+        const fileCopy = `${projectName}/package.copy.json`
         const meta = {
-          name: projectName
+          name: projectName,
+          version: '1.0.0' 
         }
-        console.log(fileName)
-        if (fs.existsSync(fileName)) {
+        if (fs.existsSync(fileCopy)&&fs.existsSync(fileName)) {
           console.log('come in...')
-          const content = fs.readFileSync(fileName, 'utf8')
+          const content = fs.readFileSync(fileCopy, 'utf8')
           const c = JSON.parse(content) // 将文件解析成对象
           const result = handlebars.compile(JSON.stringify(c, null, 2))(meta)
           fs.writeFileSync(fileName, result)

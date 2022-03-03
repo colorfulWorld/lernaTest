@@ -16,6 +16,7 @@ const fs = require('fs-extra')
 var shell = require('shelljs')
 // 是否是有效的npm 包名称。
 const validateProjectName = require('validate-npm-package-name')
+const utils = require(`${__dirname}/../packages/cli-plugin-zwtFe/utils`)
 
 let tplList = require(`${__dirname}/../repository/templates`)
 
@@ -69,14 +70,20 @@ async function create(projectName) {
         await fs.remove(projectName)
       }
     }
-  } 
-  else{
-    downloadDepend(projectName)
   }
- 
+
+  const { zwtFe } = await prompt([
+    {
+      name: 'zwtFe',
+      type: 'confirm',
+      message: `Are you want to install zwt-fe(Y/N)`,
+      default: true
+    }
+  ])
+  downloadDepend(zwtFe, projectName)
 }
 
-function downloadDepend(projectName) {
+async function downloadDepend(isInitZwtFe, projectName) {
   const spinner = ora('Downloading template...')
   spinner.start()
   download(
@@ -93,22 +100,73 @@ function downloadDepend(projectName) {
         const fileCopy = `${projectName}/package.copy.json`
         const meta = {
           name: projectName,
-          version: '1.0.0' 
+          version: '1.0.0'
         }
-        if (fs.existsSync(fileCopy)&&fs.existsSync(fileName)) {
+        if (fs.existsSync(fileCopy) && fs.existsSync(fileName)) {
           console.log('come in...')
           const content = fs.readFileSync(fileCopy, 'utf8')
           const c = JSON.parse(content) // 将文件解析成对象
           const result = handlebars.compile(JSON.stringify(c, null, 2))(meta)
           fs.writeFileSync(fileName, result)
+          if (isInitZwtFe) {
+            shell.cd(projectName)
+            shell.exec('git init', function (err, stdout, stderr) {
+              if (err) {
+                spinner.fail()
+                console.log(symbols.error, chalk.red(err))
+              } else {
+                spinner.succeed()
+                console.log(
+                  symbols.success,
+                  chalk.green('The zwt-Fe is installing!')
+                )
+                initZwtFe()
+              }
+            })
+          }
         }
       }
     }
   )
 }
 
+function initZwtFe() {
+  // todo: 兼容已安装的依赖
+  const promptList = [
+    {
+      type: 'list',
+      message: '请选择要安装的功能',
+      name: 'func',
+      choices: utils.getList()
+    },
+    {
+      type: 'list',
+      message: '请选择Eslint版本',
+      name: 'version',
+      choices: (answer) => utils.getMultiVersions(answer['func']),
+      default: (answer) => utils.getMultiVersions(answer['func'])[0],
+      when: (answer) => utils.hasMultiVersions(answer['func'])
+    }
+  ]
+  prompt(promptList)
+    .then((answer) => {
+      utils.setInitParams(answer)
+      const key = utils.getListKey(answer['func'])
+      const url = utils.getListUrl(key)
+      const funcModule = require(`${__dirname + '/../' + url}`)
+      funcModule.main()
+    })
+    .catch((error) => {
+      console.log('prompt error: ', error)
+    })
+}
+
 module.exports = (...args) => {
   return create(...args).catch((err) => {
-    console.log(err)
+    stopSpinner(false) // do not persist
+    error(err)
+    if (!process.env.VUE_CLI_TEST) {
+      process.exit(1)
+    }
   })
 }

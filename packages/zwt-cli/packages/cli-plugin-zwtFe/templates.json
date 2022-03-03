@@ -1,0 +1,26 @@
+{
+  "eslintCheck": {
+    "key": "eslintCheck",
+    "url": "packages/cli-plugin-zwtFe/src/eslint-check/index.js",
+    "multiVersions": [
+      {
+        "name": "eslint v7",
+        "value": 0
+      },
+      {
+        "name": "eslint v5: 兼容idea2019.1.3之前版本",
+        "value": 1
+      }
+    ],
+    "description": "代码提交前使用eslint,stylelint校验"
+  },
+  "commitLint": {
+    "key": "commitLint",
+    "url": "packages/cli-plugin-zwtFe/src/commitlint/index.js",
+    "description": [
+      "1. 代码提交前校验commit message规范",
+      "2. 使用 git cz 编写commit message",
+      "3. 使用 npm run changelog 或 npm run changelog:all 生成更新日志"
+    ]
+  }
+}

@@ -16,8 +16,8 @@ const fs = require('fs-extra')
 var shell = require('shelljs')
 // 是否是有效的npm 包名称。
 const validateProjectName = require('validate-npm-package-name')
-const utils = require(`${__dirname}/../packages/cli-plugin-zwtFe/utils`)
-
+const utils = require(`${__dirname}/../../zwt-fe/utils`)
+const path = require('path')
 let tplList = require(`${__dirname}/../repository/templates`)
 
 async function create(projectName) {
@@ -153,7 +153,8 @@ function initZwtFe() {
       utils.setInitParams(answer)
       const key = utils.getListKey(answer['func'])
       const url = utils.getListUrl(key)
-      const funcModule = require(`${__dirname + '/../' + url}`)
+      const pathStr = path.join(__dirname, '/../../zwt-fe/', url)
+      const funcModule = require(pathStr)
       funcModule.main()
     })
     .catch((error) => {
